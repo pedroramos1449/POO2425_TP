@@ -1,0 +1,11 @@
+# ninja log v6
+66	264	7543555381750393	CMakeFiles/Projeto.dir/Classes/Zonas/Zona.cpp.obj	b4025d6501b9f6cb
+83	299	7543555381915399	CMakeFiles/Projeto.dir/Classes/Zonas/Deserto.cpp.obj	82bccc5655b33dc4
+123	316	7543555382326153	CMakeFiles/Projeto.dir/Classes/Zonas/Cidade.cpp.obj	5f371f0b63683cd6
+101	317	7543555382100791	CMakeFiles/Projeto.dir/Classes/Zonas/Montanha.cpp.obj	51cdd0c15a0b7dc7
+39	609	7543555381481939	CMakeFiles/Projeto.dir/Classes/Caravana/Caravana.cpp.obj	55b1399fbe98a81f
+2	751	7543555381111274	CMakeFiles/Projeto.dir/main.cpp.obj	c34e55b617d770d2
+12	814	7543555381205675	CMakeFiles/Projeto.dir/Classes/Buffer/Buffer.cpp.obj	b295f30120756f33
+56	816	7543555381657250	CMakeFiles/Projeto.dir/Classes/Simulador/Simulador.cpp.obj	b580a45dd658326a
+22	942	7543555381307251	CMakeFiles/Projeto.dir/Classes/Mapa/Mapa.cpp.obj	bb607b1bcc94b5d6
+942	1276	7543555390509166	Projeto.exe	9ef63f2b61a811f3
