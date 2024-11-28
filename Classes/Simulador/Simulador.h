@@ -17,9 +17,12 @@ class Simulador {
     unique_ptr<Mapa> mapa;
     vector<shared_ptr<Caravana>> caravanas;
 
+    int turno;
+    int moedas;
+
 public:
-    Simulador(int linhas, int colunas);
-    void executarTurno(); // Executa as ações de um turno
+    Simulador();
+    void executarTurno(); // Executa as ações de um turno/instante
     void processarComando(const string& comando); // Processa comandos do utilizador
 };
 

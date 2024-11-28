@@ -7,7 +7,7 @@
 
 Buffer::Buffer(int l, int c) : linhas(l), colunas(c), cursorLinha(0), cursorColuna(0) {
     matriz = make_unique<char[]>(linhas * colunas);
-    limpar();
+    //limpar();
 }
 
 void Buffer::limpar() {
