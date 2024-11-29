@@ -20,11 +20,14 @@ shared_ptr<Zona> Mapa::obterZona(int linha, int coluna) const {
 void Mapa::mostrar(Buffer& buffer) {
     for (int i = 0; i < linhas; ++i) {
         for (int j = 0; j < colunas; ++j) {
-            if (grelha[i][j])
-                buffer.moverCursor(i, j), buffer.escrever(grelha[i][j]->getTipo());
-            else
-                buffer.moverCursor(i, j), buffer.escrever('.');
+            buffer.moverCursor(i, j);
+            if (grelha[i][j]) {
+                buffer.escrever(grelha[i][j]->getTipo());
+            } else {
+                buffer.escrever('.');
+            }
         }
     }
 }
+
 
