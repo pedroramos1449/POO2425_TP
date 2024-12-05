@@ -9,7 +9,7 @@
 
 class Deserto : public Zona {
 public:
-    char getTipo() const override { return 'D'; }
+    char getTipo() const override { return '.'; }
 };
 
 #endif // DESERTO_H
