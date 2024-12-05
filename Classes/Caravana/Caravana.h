@@ -36,4 +36,11 @@ public:
     void comportamentoAutonomo() override; // Específico para caravanas militares
 };
 
+class CaravanaBarbara : public Caravana {
+public:
+    explicit CaravanaBarbara();
+    char getTipo() const { return '!'; }
+    void comportamentoAutonomo() override; // Específico para caravanas barbaras
+};
+
 #endif // CARAVANA_H

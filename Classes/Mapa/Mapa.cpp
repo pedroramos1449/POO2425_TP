@@ -24,10 +24,26 @@ void Mapa::mostrar(Buffer& buffer) {
             if (grelha[i][j]) {
                 buffer.escrever(grelha[i][j]->getTipo());
             } else {
-                buffer.escrever('.');
+                //buffer.escrever('.');
             }
         }
     }
+}
+
+int Mapa::getLinhas() const {
+    return linhas;
+}
+
+void Mapa::setLinhas(int linhas) {
+    Mapa::linhas = linhas;
+}
+
+int Mapa::getColunas() const {
+    return colunas;
+}
+
+void Mapa::setColunas(int colunas) {
+    Mapa::colunas = colunas;
 }
 
 

@@ -13,7 +13,6 @@ add_executable(Projeto main.cpp
         Classes/Simulador/Simulador.cpp
         Classes/Simulador/Simulador.h
         Classes/Zonas/Deserto/Deserto.cpp
-        Classes/Zonas/Deserto/Deserto.h
         Classes/Zonas/Montanha/Montanha.cpp
         Classes/Zonas/Montanha/Montanha.h
         Classes/Zonas/Cidade/Cidade.cpp

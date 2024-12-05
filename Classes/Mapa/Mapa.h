@@ -25,6 +25,10 @@ public:
 
     void definirDeserto(int linha, int coluna, shared_ptr<Deserto> Deserto); // Define uma Deserto
     shared_ptr<Deserto> obterDeserto(int linha, int coluna) const; // Obtém uma Deserto
+    int getLinhas() const;
+    void setLinhas(int linhas);
+    int getColunas() const;
+    void setColunas(int colunas);
     void mostrar(Buffer& buffer); // Atualiza o buffer com a representação do mapa
 };
 
