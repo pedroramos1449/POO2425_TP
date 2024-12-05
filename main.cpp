@@ -1,5 +1,3 @@
-
-
 #include "Classes/Simulador/Simulador.h"
 #include <vector>
 #include <string>

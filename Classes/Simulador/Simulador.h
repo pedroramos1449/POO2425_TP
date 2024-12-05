@@ -19,11 +19,21 @@ class Simulador {
 
     int turno;
     int moedas;
+    int instantesEntreNovosItens;
+    int duracaoItem;
+    int maxItens;
+    int precoVendaMercadoria;
+    int precoCompraMercadoria;
+    int precoCaravana;
+    int instantesEntreNovosBarbaros;
+    int duracaoBarbaros;
 
 public:
     Simulador();
     void executarTurno(); // Executa as ações de um turno/instante
     void processarComando(const string& comando); // Processa comandos do utilizador
+    void lerConfig(const string &nomeArquivo);
+    void deduzirElementosMapa();
 };
 
 #endif // SIMULADOR_H

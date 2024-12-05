@@ -23,7 +23,10 @@ class Mapa {
 
 public:
     Mapa(int l, int c);
-
+    int getLinhas() const;
+    void setLinhas(int linhas);
+    int getColunas() const;
+    void setColunas(int colunas);
     void definirZona(int linha, int coluna, shared_ptr<Zona> zona); // Define uma zona
     shared_ptr<Zona> obterZona(int linha, int coluna) const; // Obtém uma zona
     void mostrar(Buffer& buffer); // Atualiza o buffer com a representação do mapa
