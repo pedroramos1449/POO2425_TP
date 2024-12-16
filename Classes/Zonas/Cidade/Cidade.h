@@ -4,10 +4,10 @@
 
 #ifndef CIDADE_H
 #define CIDADE_H
+#include "../Deserto/Deserto.h"
 
-#include "Zona.h"
 
-class Cidade : public Zona {
+class Cidade : public Deserto {
     char nome; // Nome da cidade (uma letra)
 public:
     explicit Cidade(char n) : nome(n) {}
