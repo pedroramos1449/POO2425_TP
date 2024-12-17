@@ -5,10 +5,11 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include "../Zonas/Deserto//Deserto.h"
+#include "../Zonas/Deserto.h"
 #include "../Zonas/Montanha/Montanha.h"
 #include "../Zonas/Cidade/Cidade.h"
 #include "../Buffer/Buffer.h"
+#include "../Caravanas/Caravana.h"
 
 #include <vector>
 #include <memory>
@@ -23,8 +24,8 @@ class Mapa {
 public:
     Mapa(int l, int c);
 
-    void definirDeserto(int linha, int coluna, shared_ptr<Deserto> Deserto); // Define uma Deserto
-    shared_ptr<Deserto> obterDeserto(int linha, int coluna) const; // Obtém uma Deserto
+    void definirZona(int linha, int coluna, shared_ptr<Deserto> Deserto);
+    shared_ptr<Deserto> obterZona(int linha, int coluna) const; // Obtém uma Deserto
     int getLinhas() const;
     void setLinhas(int linhas);
     int getColunas() const;

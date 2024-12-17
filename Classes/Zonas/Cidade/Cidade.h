@@ -4,7 +4,7 @@
 
 #ifndef CIDADE_H
 #define CIDADE_H
-#include "../Deserto/Deserto.h"
+#include "../Deserto.h"
 
 
 class Cidade : public Deserto {

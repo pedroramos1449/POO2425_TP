@@ -3,6 +3,10 @@
 #include <iostream>
 
 #include "Simulador.h"
+#include "../Caravanas/Militar/CaravanaMilitar.h"
+#include "../Caravanas/Secreta/CaravanaSecreta.h"
+#include "../Caravanas/Barbara/CaravanaBarbara.h"
+#include "../Caravanas/Comercio/CaravanaComercio.h"
 #include <sstream>
 #include <iostream>
 #include <fstream>
@@ -62,19 +66,60 @@ void Simulador::lerConfig(const string& nomeArquivo) {
     // Inicializa o mapa com as dimensões lidas
     mapa = make_unique<Mapa>(linhas, colunas);
 
-    // Configura as zonas no mapa
+    int idCaravanaComercio = 0;
+    int idCaravanaBarbara = 0;
+    int idCaravanaMilitar = 0;
+    int idCaravanaSecreta = 0;
+
+// Configura as zonas no mapa
     for (int i = 0; i < mapaConfig.size(); ++i) {
         for (int j = 0; j < mapaConfig[i].size(); ++j) {
             char tipo = mapaConfig[i][j];
+
             if (tipo == '.') {
+                // ZONA VAZIA - Deserto
                 mapa->definirZona(i, j, make_shared<Deserto>());
-            } else if (tipo == '+') {
+            }
+            else if (tipo == '+') {
+                // MONTANHA
                 mapa->definirZona(i, j, make_shared<Montanha>());
-            } else if (tipo == '!') {
-                //Caravana Barbara //NOTA: Prof disse que caravana barbara pode ser tipo diferente
-                //mapa->definirZona(i, j, make_shared<Caravana>(tipo));
-            } else {
-                //Caravana comercial //Caravan militar
+            }
+            else if (islower(tipo)) {
+                // CIDADE (a, b, c, d...)
+                mapa->definirZona(i, j, make_shared<Cidade>(tipo));
+            }
+            else if (isdigit(tipo)) {
+                // **CARAVANA COMERCIAL (0-9)**
+                int id = tipo - '0'; // Converte o caractere '0'-'9' para o valor numérico correspondente
+                auto caravana = make_shared<CaravanaComercio>(id, i, j);
+                caravanas.push_back(caravana);
+                // **Mostra o número no mapa**
+                mapa->definirZona(i, j, caravana);
+            }
+            else if (tipo == '!') {
+                // **CARAVANA BÁRBARA**
+                auto caravana = make_shared<CaravanaBarbara>(idCaravanaBarbara++, i, j);
+                caravanas.push_back(caravana);
+                // **Mostra o '!' no mapa**
+                mapa->definirZona(i, j, caravana);
+            }
+            else if (tipo == 'M') {
+                // **CARAVANA MILITAR**
+                auto caravana = make_shared<CaravanaMilitar>(idCaravanaMilitar++, i, j);
+                caravanas.push_back(caravana);
+                // **Mostra o 'M' no mapa**
+                mapa->definirZona(i, j, caravana);
+            }
+            else if (tipo == '?') {
+                // **CARAVANA SECRETA**
+                auto caravana = make_shared<CaravanaSecreta>(idCaravanaSecreta++, i, j);
+                caravanas.push_back(caravana);
+                // **Mostra o '?' no mapa**
+                mapa->definirZona(i, j, caravana);
+            }
+            else {
+                cerr << "Caractere desconhecido no mapa: " << tipo
+                     << " na posição (" << i << ", " << j << ")" << endl;
             }
         }
     }
@@ -87,13 +132,13 @@ void Simulador::deduzirElementosMapa() {
     // Percorre o mapa e deduz os elementos iniciais (cidades, caravanas, bárbaros)
     for (int i = 0; i < mapa->getLinhas(); ++i) {
         for (int j = 0; j < mapa->getColunas(); ++j) {
-            shared_ptr<Zona> zona = mapa->obterZona(i, j);
+            shared_ptr<Deserto> zona = mapa->obterZona(i, j);
             if (!zona) continue;
 
             char tipo = zona->getTipo();
             if (isdigit(tipo)) {
-                // Caravana identificada por um número
-                caravanas.push_back(make_shared<Caravana>(tipo - '0'));
+                // Caravanas identificada por um número
+                //caravanas.push_back(make_shared<Caravana>());
             } else if (tipo == '!') {
                 // Bárbaro identificado por um símbolo específico
                 mapa->definirZona(i, j, make_shared<Deserto>());
@@ -101,6 +146,7 @@ void Simulador::deduzirElementosMapa() {
         }
     }
 }
+
 void Simulador::executarTurno() {
     if (!mapa) {
         if (buffer) {

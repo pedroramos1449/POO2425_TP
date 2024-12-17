@@ -8,8 +8,9 @@
 #include <vector>
 #include <memory>
 #include "../Mapa/Mapa.h"
-#include "../Caravana/Caravana.h"
 #include "../Buffer/Buffer.h"
+#include "../Caravanas/Caravana.h"
+
 using namespace std;
 
 class Simulador {

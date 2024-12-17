@@ -7,7 +7,8 @@
 
 class Deserto  {
 public:
-    char getTipo() const { return '.'; }
+    virtual char getTipo() const { return '.'; }
+    virtual ~Deserto() = default; // Destrutor virtual
 };
 
 #endif // DESERTO_H
