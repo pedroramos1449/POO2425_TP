@@ -13,7 +13,7 @@ public:
     Deserto() : capacidade(10) {} // Capacidade inicial para exemplificação
 
     std::string getTipo() const override {
-        return "D";
+        return "Deserto";
     }
 
     int getCapacidade() const override {
