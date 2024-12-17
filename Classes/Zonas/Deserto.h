@@ -5,10 +5,28 @@
 #ifndef DESERTO_H
 #define DESERTO_H
 
-class Deserto  {
+#include "Zona.h"
+
+class Deserto : public Zona {
+    int capacidade;  // Exemplo: número de caravanas ou itens suportados
 public:
-    virtual char getTipo() const { return '.'; }
-    virtual ~Deserto() = default; // Destrutor virtual
+    Deserto() : capacidade(10) {} // Capacidade inicial para exemplificação
+
+    std::string getTipo() const override {
+        return "D";
+    }
+
+    int getCapacidade() const override {
+        return capacidade;
+    }
+
+    void setCapacidade(int novaCapacidade) override {
+        capacidade = novaCapacidade;
+    }
+
+    void atualizar() override {
+        // Exemplo de atualização específica do deserto, como mudar condições climáticas
+    }
 };
 
 #endif // DESERTO_H
