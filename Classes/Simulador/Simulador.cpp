@@ -44,12 +44,10 @@ void Simulador::processarComando(const string& comando) {
         mapa = make_unique<Mapa>(10, 20);
 
         // Define static zones for testing
-        mapa->definirZona(0, 1, make_shared<Deserto>());
-        mapa->definirZona(1, 1, make_shared<Montanha>());
-        mapa->definirZona(3, 3, make_shared<Cidade>('A'));
-        mapa->definirZona(5, 5, make_shared<Cidade>('B'));
-        mapa->definirZona(7, 7, make_shared<Montanha>());
-        mapa->definirZona(2, 4, make_shared<Deserto>());
+        mapa->definirDeserto(1, 1, make_shared<Montanha>());
+        mapa->definirDeserto(3, 3, make_shared<Cidade>('A'));
+        mapa->definirDeserto(5, 5, make_shared<Cidade>('B'));
+        mapa->definirDeserto(7, 7, make_shared<Montanha>());
 
         moedas = 1000;
 
