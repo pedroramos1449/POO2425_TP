@@ -8,8 +8,9 @@
 #include <vector>
 #include <memory>
 #include "../Mapa/Mapa.h"
-#include "../Caravana/Caravana.h"
 #include "../Buffer/Buffer.h"
+#include "../Caravanas/Caravana.h"
+
 using namespace std;
 
 class Simulador {
@@ -19,11 +20,21 @@ class Simulador {
 
     int turno;
     int moedas;
+    int instantesEntreNovosItens;
+    int duracaoItem;
+    int maxItens;
+    int precoVendaMercadoria;
+    int precoCompraMercadoria;
+    int precoCaravana;
+    int instantesEntreNovosBarbaros;
+    int duracaoBarbaros;
 
 public:
     Simulador();
     void executarTurno(); // Executa as ações de um turno/instante
     void processarComando(const string& comando); // Processa comandos do utilizador
+    void lerConfig(const string &nomeArquivo);
+    void deduzirElementosMapa();
 };
 
 #endif // SIMULADOR_H

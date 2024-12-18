@@ -23,7 +23,7 @@ public:
     void limpar(); // Esvazia o buffer, preenchendo-o com espaços
     void moverCursor(int l, int c); // Move o cursor para uma posição específica
     void escrever(char c); // Escreve um carácter na posição atual do cursor
-    void escrever(const string& str); // Escreve uma string na posição atual do cursor
+    static void escrever(const string& str); // Escreve uma string na posição atual do cursor
     void mostrar(); // Mostra o conteúdo do buffer no terminal
 };
 

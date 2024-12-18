@@ -4,12 +4,11 @@
 
 #ifndef MONTANHA_H
 #define MONTANHA_H
-#include "../Deserto/Deserto.h"
-
+#include "../Deserto.h"
 
 class Montanha : public Deserto {
 public:
-    char getTipo() const override { return 'M'; }
+    char getTipo() const override { return '+'; }
 };
 
 #endif // MONTANHA_H
