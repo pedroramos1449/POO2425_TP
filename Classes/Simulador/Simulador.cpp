@@ -63,7 +63,6 @@ void Simulador::lerConfig(const string& nomeArquivo) {
 
     cfg.close();
 
-    // Inicializa o mapa com as dimensões lidas
     mapa = make_unique<Mapa>(linhas, colunas);
 
     int idCaravanaComercio = 0;
@@ -123,6 +122,9 @@ void Simulador::lerConfig(const string& nomeArquivo) {
             }
         }
     }
+
+    buffer->escrever("Configuracao carregada.\n");
+    mapa->mostrar(*buffer);
 
     // Deduz elementos do mapa (cidades, caravanas, bárbaros)
     //deduzirElementosMapa();
@@ -207,21 +209,10 @@ void Simulador::processarComando(const string& comando) {
     string cmd;
     ss >> cmd;
 
-    buffer->limpar();
-    buffer->moverCursor(0, 0);
-
     if (cmd == "config") {
         string nomeArquivo;
         ss >> nomeArquivo;
         lerConfig(nomeArquivo);
-
-        buffer->limpar();
-        buffer->moverCursor(0, 0);
-        mapa->mostrar(*buffer);
-        //buffer->escrever("Configuracao carregada.");
-        cout << "\nConfiguracao carregada...\n" << endl;
-        buffer->mostrar();
-        
     } else if (cmd == "sair") {
         // Comando da fase 1
         buffer->escrever("Comando: sair");
@@ -364,6 +355,4 @@ void Simulador::processarComando(const string& comando) {
         buffer->escrever("Comando desconhecido: ");
         buffer->escrever(cmd);
     }
-
-    //buffer->mostrar();
 }
