@@ -10,7 +10,7 @@
 class CaravanaMilitar : public Caravana {
 public:
     CaravanaMilitar(int id, int linha, int coluna);
-    char getTipo() const override { return 'm'; }
+    char getTipo() const override { return 'M'; }
     void comportamentoAutonomo() override;
 };
 

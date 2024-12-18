@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Caravana {
+class Caravana : public Zona {
 protected:
     int id;
     char tipo; // Tipo ('C' = Comercial, 'M' = Militar, 'S' = Secreta, 'B' = Bárbara)

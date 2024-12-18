@@ -129,19 +129,51 @@ void Simulador::lerConfig(const string& nomeArquivo) {
 }
 
 void Simulador::deduzirElementosMapa() {
-    // Percorre o mapa e deduz os elementos iniciais (cidades, caravanas, bárbaros)
     for (int i = 0; i < mapa->getLinhas(); ++i) {
         for (int j = 0; j < mapa->getColunas(); ++j) {
-            shared_ptr<Deserto> zona = mapa->obterZona(i, j);
+            shared_ptr<Zona> zona = mapa->obterZona(i, j);
             if (!zona) continue;
 
             char tipo = zona->getTipo();
-            if (isdigit(tipo)) {
-                // Caravanas identificada por um número
-                //caravanas.push_back(make_shared<Caravana>());
-            } else if (tipo == '!') {
-                // Bárbaro identificado por um símbolo específico
-                mapa->definirZona(i, j, make_shared<Deserto>());
+
+            // Verificação de caravana
+            if (isdigit(tipo)) { // CARAVANA COMERCIAL (0-9)
+                int id = tipo - '0'; // Converte o caractere para o número
+                auto caravana = make_shared<CaravanaComercio>(id, i, j);
+                caravanas.push_back(caravana);
+                mapa->definirZona(i, j, make_shared<Deserto>()); // Substitui a posição no mapa para Deserto
+            }
+            else if (tipo == '!') { // CARAVANA BÁRBARA
+                static int idBarbaro = 0; // Incremental para dar ID único às caravanas bárbaras
+                auto caravana = make_shared<CaravanaBarbara>(idBarbaro++, i, j);
+                caravanas.push_back(caravana);
+                mapa->definirZona(i, j, make_shared<Deserto>()); // Substitui a posição no mapa para Deserto
+            }
+            else if (tipo == 'M') { // CARAVANA MILITAR
+                static int idMilitar = 0; // Incremental para dar ID único às caravanas militares
+                auto caravana = make_shared<CaravanaMilitar>(idMilitar++, i, j);
+                caravanas.push_back(caravana);
+                mapa->definirZona(i, j, make_shared<Deserto>()); // Substitui a posição no mapa para Deserto
+            }
+            else if (tipo == '?') { // CARAVANA SECRETA
+                static int idSecreta = 0; // Incremental para dar ID único às caravanas secretas
+                auto caravana = make_shared<CaravanaSecreta>(idSecreta++, i, j);
+                caravanas.push_back(caravana);
+                mapa->definirZona(i, j, make_shared<Deserto>()); // Substitui a posição no mapa para Deserto
+            }
+            else if (islower(tipo)) { // CIDADE (a, b, c, d...)
+                // Pode ser que você queira contabilizar ou armazenar as cidades
+                cout << "Cidade identificada na posição (" << i << ", " << j << ") com o nome: " << tipo << endl;
+            }
+            else if (tipo == '+') { // MONTANHA
+                // Não precisa fazer nada, pois a montanha já é uma zona que permanece no mapa
+            }
+            else if (tipo == '.') { // DESERTO
+                // Nada a fazer, já é um deserto
+            }
+            else {
+                cerr << "Caractere desconhecido no mapa: " << tipo
+                     << " na posição (" << i << ", " << j << ")" << endl;
             }
         }
     }
@@ -188,7 +220,7 @@ void Simulador::processarComando(const string& comando) {
         mapa->mostrar(*buffer);
         //buffer->escrever("Configuracao carregada.");
         cout << "\nConfiguracao carregada...\n" << endl;
-        //buffer->mostrar();
+        buffer->mostrar();
         
     } else if (cmd == "sair") {
         // Comando da fase 1
@@ -333,5 +365,5 @@ void Simulador::processarComando(const string& comando) {
         buffer->escrever(cmd);
     }
 
-    buffer->mostrar();
+    //buffer->mostrar();
 }

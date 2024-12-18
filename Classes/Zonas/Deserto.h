@@ -5,10 +5,13 @@
 #ifndef DESERTO_H
 #define DESERTO_H
 
-class Deserto  {
+#include <memory>
+#include "Zona.h"
+
+class Deserto: public Zona {
 public:
     virtual char getTipo() const { return '.'; }
-    virtual ~Deserto() = default; // Destrutor virtual
+    virtual ~Deserto() = default;
 };
 
 #endif // DESERTO_H

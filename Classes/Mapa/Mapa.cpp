@@ -4,14 +4,14 @@
 
 #include "Mapa.h"
 
-Mapa::Mapa(int l, int c) : linhas(l), colunas(c), grelha(l, vector<shared_ptr<Deserto>>(c, nullptr)) {}
+Mapa::Mapa(int l, int c) : linhas(l), colunas(c), grelha(l, vector<shared_ptr<Zona>>(c, nullptr)) {}
 
-void Mapa::definirZona(int linha, int coluna, shared_ptr<Deserto> Deserto) {
+void Mapa::definirZona(int linha, int coluna, shared_ptr<Zona> zona) {
     if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas)
-        grelha[linha][coluna] = move(Deserto);
+        grelha[linha][coluna] = move(zona);
 }
 
-shared_ptr<Deserto> Mapa::obterZona(int linha, int coluna) const {
+shared_ptr<Zona> Mapa::obterZona(int linha, int coluna) const {
     if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas)
         return grelha[linha][coluna];
     return nullptr;

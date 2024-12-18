@@ -34,6 +34,7 @@ void Buffer::escrever(const string& str) {
 }
 
 void Buffer::mostrar() {
+    cout << "Mostrar" << endl;
     for (int i = 0; i < linhas; ++i) {
         for (int j = 0; j < colunas; ++j)
             cout << matriz[i * colunas + j];
