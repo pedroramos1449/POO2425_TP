@@ -13,6 +13,7 @@ public:
     CaravanaBarbara(int id, int linha, int coluna);
     char getTipo() const override { return '!'; }
     void comportamentoAutonomo() override;
+    bool afetarPorTempestade() override;
 };
 
 

@@ -25,14 +25,15 @@ public:
     Caravana(int id, char tipo, int linha, int coluna);
     virtual void mover(const std::string& direcao);
     virtual void comportamentoAutonomo();
-    int getID() const { return id; }
+    virtual bool afetarPorTempestade() = 0;
     virtual char getTipo() const = 0;
+    virtual ~Caravana() = default;
+    int getID() const { return id; }
     int getLinha() const { return linha; }
     int getColuna() const { return coluna; }
     void perderTripulante();
     bool estaSemTripulantes() const { return tripulantes <= 0; }
     void reabastecerAgua() { aguaAtual = capacidadeAgua; }
-    virtual ~Caravana() = default;
 };
 
 #endif // CARAVANA_H

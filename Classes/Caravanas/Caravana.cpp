@@ -2,6 +2,7 @@
 // Created by mauro on 11/26/2024.
 //
 
+#include <iostream>
 #include "Caravana.h"
 
 Caravana::Caravana(int id, char tipo, int linha, int coluna)
@@ -23,4 +24,3 @@ void Caravana::comportamentoAutonomo() {
 void Caravana::perderTripulante() {
     if (tripulantes > 0) tripulantes--;
 }
-

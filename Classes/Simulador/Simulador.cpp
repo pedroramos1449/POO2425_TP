@@ -10,6 +10,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 Simulador::Simulador()
         : buffer(make_unique<Buffer>(20, 40)), // Buffer inicial padrão
@@ -303,8 +304,8 @@ void Simulador::processarComando(const string& comando) {
         // Comando da fase 2
         int linha, coluna, raio;
         ss >> linha >> coluna >> raio;
-        buffer->escrever("Comando: areia ");
-        buffer->escrever(to_string(linha) + " " + to_string(coluna) + " " + to_string(raio));
+
+        comandoAreias(linha, coluna, raio);
 
     } else if (cmd == "moedas") {
         // Comando da fase 2
@@ -355,4 +356,36 @@ void Simulador::processarComando(const string& comando) {
         buffer->escrever("Comando desconhecido: ");
         buffer->escrever(cmd);
     }
+}
+
+void Simulador::comandoAreias(int l, int c, int r) {
+    int inicioLinha = std::max(0, l - r);
+    int inicioColuna = std::max(0, c - r);
+    int fimLinha = std::min(mapa->getLinhas() - 1, l + r);
+    int fimColuna = std::min(mapa->getColunas() - 1, c + r);
+
+    std::cout << "🌪️ Tempestade de areia em (" << l << ", " << c << ") com raio " << r << std::endl;
+
+    for (int i = inicioLinha; i <= fimLinha; ++i) {
+        for (int j = inicioColuna; j <= fimColuna; ++j) {
+            auto zona = mapa->obterZona(i, j);
+            auto caravana = std::dynamic_pointer_cast<Caravana>(zona);
+            if (caravana) {
+                if(caravana->afetarPorTempestade()) {
+                    destruirCaravana(caravana);
+                }
+            }
+        }
+    }
+
+    mapa->mostrar(*buffer);
+}
+
+void Simulador::destruirCaravana(std::shared_ptr<Caravana> caravana) {
+    mapa->removerElemento(caravana->getLinha(), caravana->getColuna());
+    caravanas.erase(
+            std::remove(caravanas.begin(), caravanas.end(), caravana),
+            caravanas.end()
+    );
+    std::cout << "💥 Caravana " << caravana->getID() << " foi destruída e removida do mapa." << std::endl;
 }

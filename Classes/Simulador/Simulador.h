@@ -35,6 +35,8 @@ public:
     void processarComando(const string& comando); // Processa comandos do utilizador
     void lerConfig(const string &nomeArquivo);
     void deduzirElementosMapa();
+    void comandoAreias(int l, int c, int r);
+    void destruirCaravana(shared_ptr<Caravana> caravana);
 };
 
 #endif // SIMULADOR_H

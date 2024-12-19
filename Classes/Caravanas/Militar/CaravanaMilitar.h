@@ -12,6 +12,7 @@ public:
     CaravanaMilitar(int id, int linha, int coluna);
     char getTipo() const override { return 'M'; }
     void comportamentoAutonomo() override;
+    bool afetarPorTempestade() override;
 };
 
 #endif // MILITAR_H

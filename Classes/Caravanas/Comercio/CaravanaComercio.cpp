@@ -16,5 +16,14 @@ void CaravanaComercio::comportamentoAutonomo() {
     // Comportamento de caravanas comerciais
 }
 
+bool CaravanaComercio::afetarPorTempestade() {
+    if (rand() % 100 < (cargaAtual > capacidadeCarga / 2 ? 50 : 25)) {
+        // 50% or 25% chance to destroy the caravan
+        return true;
+    } else {
+        cargaAtual *= 0.75; // Lose 25% of the cargo
+    }
+    return false;
+}
 
 
