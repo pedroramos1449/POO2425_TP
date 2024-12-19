@@ -12,6 +12,7 @@ public:
     CaravanaComercio(int id, int linha, int coluna);
     char getTipo() const override { return '$'; }
     void comportamentoAutonomo() override;
+    bool afetarPorTempestade() override;
 };
 
 #endif // COMERCIO_H

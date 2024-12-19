@@ -15,3 +15,12 @@ CaravanaSecreta::CaravanaSecreta(int id, int linha, int coluna)
 void CaravanaSecreta::comportamentoAutonomo() {
     // Comportamento secreto definido pelo grupo
 }
+
+bool CaravanaSecreta::afetarPorTempestade()  {
+    // Custom secret logic (can be similar to Militar or unique)
+    tripulantes = max(0, tripulantes - (tripulantes / 5)); // Custom logic for loss of crew
+    if (rand() % 100 < 20) { // Custom destruction chance
+        return true;
+    }
+    return false;
+}

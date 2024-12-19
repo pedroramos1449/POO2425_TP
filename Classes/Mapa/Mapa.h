@@ -31,6 +31,9 @@ public:
     int getColunas() const;
     void setColunas(int colunas);
     void mostrar(Buffer& buffer); // Atualiza o buffer com a representação do mapa
+    void tempestadeAreia(int l, int c, int r);
+
+    void removerElemento(int linha, int coluna);
 };
 
 #endif // MAPA_H

@@ -2,6 +2,7 @@
 // Created by mauro on 11/26/2024.
 //
 
+#include <iostream>
 #include "Mapa.h"
 
 Mapa::Mapa(int l, int c) : linhas(l), colunas(c), grelha(l, vector<shared_ptr<Zona>>(c, nullptr)) {}
@@ -44,6 +45,16 @@ int Mapa::getColunas() const {
 
 void Mapa::setColunas(int colunas) {
     Mapa::colunas = colunas;
+}
+
+void Mapa::removerElemento(int linha, int coluna) {
+    if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas) {
+        auto zona = grelha[linha][coluna];
+        if (zona) {
+            grelha[linha][coluna] = make_shared<Deserto>();
+            cout << "Elemento removido da posição (" << linha << ", " << coluna << ") e substituído por Deserto." << endl;
+        }
+    }
 }
 
 

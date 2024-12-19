@@ -16,4 +16,11 @@ void CaravanaMilitar::comportamentoAutonomo() {
     // Persegue caravanas bárbaras a 6 posições de distância
 }
 
+bool CaravanaMilitar::afetarPorTempestade() {
+    tripulantes = max(0, tripulantes - (tripulantes / 10)); // Lose 10% of the crew
+    if (rand() % 100 < 33) {
+       return true;
+    }
+    return false;
+}
 
